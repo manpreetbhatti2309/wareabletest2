@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -28,9 +29,9 @@ public class MainActivity extends AppCompatActivity {
 
     private final String TAG = "Manpreet";
     public int counter;
-    TextView timer;
+    TextView timer, slowDownBy,  amount;
     Button button;
-
+    SeekBar seekbar;
     private final String PARTICLE_USERNAME = "manubhatti2309@gmail.com";
     private final String PARTICLE_PASSWORD = "9780360325";
 
@@ -51,7 +52,37 @@ public class MainActivity extends AppCompatActivity {
 
 
         timer = (TextView) findViewById(R.id.timer);
+        slowDownBy = (TextView) findViewById(R.id.slow);
         button = (Button) findViewById(R.id.button);
+        seekbar= (SeekBar) findViewById(R.id.seekBar);
+        amount= (TextView) findViewById(R.id.amount);
+
+        seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress,
+                                          boolean fromUser) {
+                seekbar= (SeekBar) findViewById(R.id.seekBar);
+                amount.setText("Amount of mohammad:" + progress);
+                if(progress == 1)
+                {
+
+                }
+
+            }
+        });
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,54 +130,53 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void getFromDevice(final String eventDD) {
+
+        if (mDevice == null) {
+            Log.d(TAG, "Cannot find device");
+            return;
+        }
+
+        Async.executeAsync(ParticleCloudSDK.getCloud(), new Async.ApiWork<ParticleCloud, Object>() {
+
+            @Override
+            public Object callApi(ParticleCloud particleCloud) throws ParticleCloudException, IOException {
+                subscriptionId = ParticleCloudSDK.getCloud().subscribeToMyDevicesEvents(
+                        eventDD,  // the first argument, "eventNamePrefix", is optional
+                        new ParticleEventHandler() {
+                            public void onEvent(String eventName, ParticleEvent event) {
+                                Log.d(TAG, "Received event with payload: " + event.dataPayload);
+                                //   ss = (event.dataPayload).toString();
+
+                                runOnUiThread(new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+
+                                    }
+                                }));
+                            }
+
+
+                            public void onEventError(Exception e) {
+                                Log.e(TAG, "Event error: ", e);
+                            }
+                        });
+                return -1;
+            }
+
+            @Override
+            public void onSuccess(Object o) {
+                Log.d(TAG, "Successfully got device data from Cloud");
+            }
+
+            @Override
+            public void onFailure(ParticleCloudException exception) {
+                Log.d(TAG, exception.getBestMessage());
+            }
+        });
+
+    }
+
 }
-//
-//    public void getFromDevice(final String eventDD) {
-//
-//        if (mDevice == null) {
-//            Log.d(TAG, "Cannot find device");
-//            return;
-//        }
-//
-//        Async.executeAsync(ParticleCloudSDK.getCloud(), new Async.ApiWork<ParticleCloud, Object>() {
-//
-//            @Override
-//            public Object callApi(ParticleCloud particleCloud) throws ParticleCloudException, IOException {
-//                subscriptionId = ParticleCloudSDK.getCloud().subscribeToMyDevicesEvents(
-//                        eventDD,  // the first argument, "eventNamePrefix", is optional
-//                        new ParticleEventHandler() {
-//                            public void onEvent(String eventName, ParticleEvent event) {
-//                                Log.d(TAG, "Received event with payload: " + event.dataPayload);
-//                                //   ss = (event.dataPayload).toString();
-//
-//                                runOnUiThread(new Thread(new Runnable() {
-//                                    @Override
-//                                    public void run() {
-//
-//                                    }
-//                                }));
-//                            }
-//
-//
-//                            public void onEventError(Exception e) {
-//                                Log.e(TAG, "Event error: ", e);
-//                            }
-//                        });
-//                return -1;
-//            }
-//
-//            @Override
-//            public void onSuccess(Object o) {
-//                Log.d(TAG, "Successfully got device data from Cloud");
-//            }
-//
-//            @Override
-//            public void onFailure(ParticleCloudException exception) {
-//                Log.d(TAG, exception.getBestMessage());
-//            }
-//        });
-//
-//    }
-
-
 

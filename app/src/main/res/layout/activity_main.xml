@@ -19,44 +19,31 @@
         android:background="@android:color/holo_blue_bright"
         android:text="START MONITORING"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintBottom_toTopOf="@+id/amount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/marking" />
-
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="39dp"
-        android:layout_marginRight="39dp"
-        android:layout_marginBottom="87dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/timee"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar" />
 
     <SeekBar
         android:id="@+id/seekBar"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="74dp"
-        android:layout_marginLeft="74dp"
-        android:layout_marginEnd="74dp"
-        android:layout_marginRight="74dp"
-        android:layout_marginBottom="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/editText2"
+        android:layout_marginStart="73dp"
+        android:layout_marginLeft="73dp"
+        android:layout_marginEnd="73dp"
+        android:layout_marginRight="73dp"
+        android:layout_marginBottom="54dp"
+        android:max="10"
+        app:layout_constraintBottom_toTopOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/amount" />
 
     <TextView
         android:id="@+id/timer"
         android:layout_width="212dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="62dp"
         android:text="TextView"
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -65,15 +52,15 @@
         app:layout_constraintTop_toBottomOf="@+id/timee" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/amount"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="77dp"
-        android:layout_marginLeft="77dp"
-        android:layout_marginEnd="77dp"
-        android:layout_marginRight="77dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginLeft="76dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginRight="76dp"
         android:layout_marginBottom="36dp"
-        android:text="Amount Of Mohammad"
+        android:text=""
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/seekBar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -96,15 +83,16 @@
     <TextView
         android:id="@+id/textView5"
         android:layout_width="0dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="19dp"
-        android:layout_marginLeft="19dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="47dp"
-        android:layout_marginRight="47dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="63dp"
+        android:layout_marginRight="63dp"
+        android:layout_marginBottom="87dp"
         android:text="slows down by:"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/editText2"
+        app:layout_constraintBottom_toTopOf="@+id/timee"
+        app:layout_constraintEnd_toStartOf="@+id/slow"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seekBar" />
 
@@ -112,14 +100,24 @@
         android:id="@+id/timee"
         android:layout_width="208dp"
         android:layout_height="0dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
         android:layout_marginBottom="34dp"
-        android:onClick="checkTimer"
         android:text="Time Elapsed:"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/timer"
         app:layout_constraintStart_toStartOf="@+id/timer"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/slow"
+        android:layout_width="0dp"
+        android:layout_height="81dp"
+        android:layout_marginEnd="79dp"
+        android:layout_marginRight="79dp"
+        android:text="time"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
